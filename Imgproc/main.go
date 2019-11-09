@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/fabienbellanger/Udemy_Golang-formation-complete/Imgproc/filter"
+	"github.com/fabienbellanger/Udemy_Golang-formation-complete/Imgproc/task"
 )
 
 func main() {
@@ -16,6 +18,10 @@ func main() {
 	// fmt.Println(err)
 
 	var f filter.Filter = filter.Grayscale{}
-	t := task.NewWaitGrpTask("./img", "ouput", f)
-	fmt.Println(t)
+	t := task.NewWaitGrpTask("./imgs", "output", f)
+
+	start := time.Now()
+	t.Process()
+	elapsted := time.Since(start)
+	fmt.Printf("Image processing took %s\n", elapsted)
 }
